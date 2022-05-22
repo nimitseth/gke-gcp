@@ -18,25 +18,36 @@
  - Roles, custom roles and policies    
     Creation, deletion & managment    
     Applying roles on both project and orgnization lavel.
-## GCP Compute
-   - Cloud VM   
-   Creation, deletion, managment, resizing, backup & restoration.
-   - Cloud load balancer  
-      Concept of Private and public LBs, Use of LBs in multi tier application architecture.
+## GCP Compute engine
+   - VM Instance
+   Creation, deletion, managment, resizing, backup & restoration.   
    - redundancy options
-   - managed instance group  
+   - Instance group  
       Concept of auto node scalling  
       VM Image creation
+   - Instance template
+   - Machine image
+   - Disk
+   - Snapshot
+   - Images
 ## GCP Networking
-   - VPC, subnets, 
+   - VPC networks, subnets, 
    - vpc peering, Cloud DNS (Private and Public zones, VPC linking)
    - ingress egress firewall rules
-   - CloudNat
+   - Routes
+   - IP addresses
 ## GCP Storage
    - Cloud storage, file system storage, cloud disk
+       Static website hosting with http load balancer and cloud storage bucket.   
    - Storage redundancy
    - Disk snapshot
    - Backup and restore
+## Network services
+   - Load Balancing   
+           Concept of Private and public LBs, Use of LBs in multi tier application architecture.   
+           HTTP Load balancer   
+           Health check and use of instance group for autoscaling   
+   - Cloud DNS
 ## GCP logging and monitoring, alerting.
    - Monitoring metrics
    - Logging and monitoring observability
@@ -53,9 +64,9 @@
    - deployment, statfulset, ingress and services
 ## GCP serverless
   - cloud function
-  - Cloud events
+  - Cloud Run
 ## GCP Infra as code
   - Building infra with cloud foundation toolkit templates
 ## GCP CLI, Cloud Shell
 ## GCP Database
-  - Cloud SQL, big query, cloud bigtable, Data flow
+  - Cloud SQL, Spanner, Bigtable
