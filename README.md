@@ -65,8 +65,8 @@
 ## GCP serverless
   - cloud function
   - Cloud Run
-## GCP Infra as code
-  - Building infra with cloud foundation toolkit templates
 ## GCP CLI, Cloud Shell
+  - Configure GCP Cloud Shell
+  - Configure GCP Cloud SDK.Use gcloud and gsutil commands
 ## GCP Database
   - Cloud SQL, Spanner, Bigtable
