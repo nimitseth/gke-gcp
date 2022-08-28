@@ -70,3 +70,6 @@
   - Configure GCP Cloud SDK.Use gcloud and gsutil commands
 ## GCP Database
   - Cloud SQL, Spanner, Bigtable
+
+
+[Gcloud SDK cheat sheet](/gcloud-sdk-cheat-sheet)
