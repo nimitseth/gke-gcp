@@ -72,4 +72,4 @@
   - Cloud SQL, Spanner, Bigtable
 
 
-[Gcloud SDK cheat sheet](/gcloud-sdk-cheat-sheet)
+[Gcloud SDK cheat sheet](/gcloud-sdk-cheat-sheet.html)
