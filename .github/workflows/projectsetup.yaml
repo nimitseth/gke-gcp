@@ -17,7 +17,8 @@ env:
   gitlab_user: '${{ secrets.GITLAB_USER }}'
   gitlab_url: '${{ secrets.GITLAB_URL }}'
   gitlab_password: '${{ secrets.GITLAB_TOKEN }}'
-  
+  gitlab_lock: '${{ secrets.GITLAB_URL }}/lock'
+  gitlab_unlock: '${{ secrets.GITLAB_URL }}/lock'
 jobs:
   terraform:
     name: 'Terraform'
@@ -49,7 +50,9 @@ jobs:
     - name: Terraform Init \
            -backend-config "username=$TF_VAR_gitlab_user" \
            -backend-config "password=$TF_VAR_gitlab_password" \
-           -backend-config "address=$TF_VAR_gitlab_url" 
+           -backend-config "address=$TF_VAR_gitlab_url" \
+           -backend-config "lock_address=$TF_VAR_gitlab_lock" \
+           -backend-config "unlock_address=$TF_VAR_gitlab_unlock"
       run: terraform init
       working-directory: labstart
 
@@ -57,7 +60,9 @@ jobs:
     - name: Terraform Plan \
            -backend-config "username=$TF_VAR_gitlab_user" \
            -backend-config "password=$TF_VAR_gitlab_password" \
-           -backend-config "address=$TF_VAR_gitlab_url"
+           -backend-config "address=$TF_VAR_gitlab_url" \
+           -backend-config "lock_address=$TF_VAR_gitlab_lock" \
+           -backend-config "unlock_address=$TF_VAR_gitlab_unlock"
       run: terraform plan -input=false
       working-directory: labstart
 
@@ -66,7 +71,9 @@ jobs:
       run: terraform apply -auto-approve -input=false  \
            -backend-config "username=$TF_VAR_gitlab_user" \
            -backend-config "password=$TF_VAR_gitlab_password" \
-           -backend-config "address=$TF_VAR_gitlab_url"
+           -backend-config "address=$TF_VAR_gitlab_url" \
+           -backend-config "lock_address=$TF_VAR_gitlab_lock" \
+           -backend-config "unlock_address=$TF_VAR_gitlab_unlock"
       working-directory: labstart
     - name: Terraform destroy
       if: ${{ github.event.inputs.TFACTION == 'destroy' }}
