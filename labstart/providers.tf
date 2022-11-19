@@ -21,6 +21,6 @@ data "terraform_remote_state" "example" {
   config = {
     address = https://git.mevijay.dev/api/v4/projects/5/terraform/state/classgcp
     username = var.vijay
-    password = var.example_access_token
+    password = var.gitlab_token
   }
 }
