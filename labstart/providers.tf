@@ -8,8 +8,6 @@ terraform {
     lock_method    = "POST"
     unlock_method  = "DELETE"
   }
-
-  }
   required_providers {
     google = {
       source  = "hashicorp/google"
@@ -17,6 +15,7 @@ terraform {
     }
   }
 }
+
 provider "random" {
 }
 
