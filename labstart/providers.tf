@@ -1,7 +1,5 @@
 terraform {
-  backend "gcs" {
-    bucket = "mevijay-gke1"
-    prefix = "tf/state/gke1"
+  backend "http" {
   }
   required_providers {
     google = {
@@ -16,4 +14,13 @@ provider "random" {
 provider "google" {
   project     = var.project_id
   region      = var.region
+}
+data "terraform_remote_state" "example" {
+  backend = "http"
+
+  config = {
+    address = https://git.mevijay.dev/api/v4/projects/5/terraform/state/classgcp
+    username = var.vijay
+    password = var.example_access_token
+  }
 }
