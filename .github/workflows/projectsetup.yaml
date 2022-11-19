@@ -46,12 +46,12 @@ jobs:
       run: terraform init
 
     # Generates an execution plan for Terraform
-    - name: Terraform Plan
+    - name: Terraform Plan  -var="gitlab_token=${{ secrets.GITLAB_TOKEN }}" -var="gitlab_user=${{ secrets.GITLAB_USER }}" -var="gitlab_url=${{ secrets.GITLAB_URL }}"
       run: terraform plan -input=false
 
     - name: Terraform Apply
       if: ${{ github.event.inputs.TFACTION == 'apply' }}
-      run: terraform apply -auto-approve -input=false  -var="gitlab_token=${{ secrets.GITLAB_TOKEN }}"
+      run: terraform apply -auto-approve -input=false  -var="gitlab_token=${{ secrets.GITLAB_TOKEN }}" -var="gitlab_user=${{ secrets.GITLAB_USER }}" -var="gitlab_url=${{ secrets.GITLAB_URL }}"
     - name: Terraform destroy
       if: ${{ github.event.inputs.TFACTION == 'destroy' }}
       run: terraform destroy -auto-approve -input=false
