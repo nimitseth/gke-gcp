@@ -14,9 +14,9 @@ permissions:
   contents: 'read'
   id-token: 'write'
 env:
-  gitlab_user: ${{ secret.GITLAB_USER }}
-  gitlab_url: ${{ secret.GITLAB_URL }}
-  gitlab_password: ${{ secret.GITLAB_TOKEN }}
+  gitlab_user: '${{ secrets.GITLAB_USER }}'
+  gitlab_url: '${{ secrets.GITLAB_URL }}'
+  gitlab_password: '${{ secrets.GITLAB_TOKEN }}'
   
 jobs:
   terraform:
