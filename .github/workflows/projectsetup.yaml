@@ -13,7 +13,11 @@ on:
 permissions:
   contents: 'read'
   id-token: 'write'
-
+env:
+  gitlab_user: ${{ secret.GITLAB_USER }}
+  gitlab_url: ${{ secret.GITLAB_URL }}
+  gitlab_password: ${{ secret.GITLAB_TOKEN }}
+  
 jobs:
   terraform:
     name: 'Terraform'
@@ -42,18 +46,27 @@ jobs:
     - name: testing env print
       run: env
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
+    - name: Terraform Init \
+           -backend-config "username=$TF_VAR_gitlab_user" \
+           -backend-config "password=$TF_VAR_gitlab_password" \
+           -backend-config "address=$TF_VAR_gitlab_url" 
       run: terraform init
       working-directory: labstart
 
     # Generates an execution plan for Terraform
-    - name: Terraform Plan  -var="gitlab_token=${{ secrets.GITLAB_TOKEN }}" -var="gitlab_user=${{ secrets.GITLAB_USER }}" -var="gitlab_url=${{ secrets.GITLAB_URL }}"
+    - name: Terraform Plan \
+           -backend-config "username=$TF_VAR_gitlab_user" \
+           -backend-config "password=$TF_VAR_gitlab_password" \
+           -backend-config "address=$TF_VAR_gitlab_url"
       run: terraform plan -input=false
       working-directory: labstart
 
     - name: Terraform Apply
       if: ${{ github.event.inputs.TFACTION == 'apply' }}
-      run: terraform apply -auto-approve -input=false  -var="gitlab_token=${{ secrets.GITLAB_TOKEN }}" -var="gitlab_user=${{ secrets.GITLAB_USER }}" -var="gitlab_url=${{ secrets.GITLAB_URL }}"
+      run: terraform apply -auto-approve -input=false  \
+           -backend-config "username=$TF_VAR_gitlab_user" \
+           -backend-config "password=$TF_VAR_gitlab_password" \
+           -backend-config "address=$TF_VAR_gitlab_url"
       working-directory: labstart
     - name: Terraform destroy
       if: ${{ github.event.inputs.TFACTION == 'destroy' }}
