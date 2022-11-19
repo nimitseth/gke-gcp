@@ -1,5 +1,14 @@
 terraform {
   backend "http" {
+    address = var.gitlab_url
+    lock_address = "${var.gitlab_url}/lock"
+    unlock_address = "${var.gitlab_url}/lock"
+    username = var.gitlab_user
+    password = var.gitlab_token
+    lock_method    = "POST"
+    unlock_method  = "DELETE"
+  }
+
   }
   required_providers {
     google = {
@@ -14,13 +23,4 @@ provider "random" {
 provider "google" {
   project     = var.project_id
   region      = var.region
-}
-data "terraform_remote_state" "example" {
-  backend = "http"
-
-  config = {
-    address = https://git.mevijay.dev/api/v4/projects/5/terraform/state/classgcp
-    username = var.vijay
-    password = var.gitlab_token
-  }
 }
