@@ -48,32 +48,32 @@ jobs:
       run: env
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init \
-           -backend-config "username=$TF_VAR_gitlab_user" \
-           -backend-config "password=$TF_VAR_gitlab_password" \
-           -backend-config "address=$TF_VAR_gitlab_url" \
-           -backend-config "lock_address=$TF_VAR_gitlab_lock" \
-           -backend-config "unlock_address=$TF_VAR_gitlab_unlock"
+           -backend-config="username=$TF_VAR_gitlab_user" \
+           -backend-config="password=$TF_VAR_gitlab_password" \
+           -backend-config="address=$TF_VAR_gitlab_url" \
+           -backend-config="lock_address=$TF_VAR_gitlab_lock" \
+           -backend-config="unlock_address=$TF_VAR_gitlab_unlock"
       run: terraform init
       working-directory: labstart
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan \
-           -backend-config "username=$TF_VAR_gitlab_user" \
-           -backend-config "password=$TF_VAR_gitlab_password" \
-           -backend-config "address=$TF_VAR_gitlab_url" \
-           -backend-config "lock_address=$TF_VAR_gitlab_lock" \
-           -backend-config "unlock_address=$TF_VAR_gitlab_unlock"
+           -backend-config="username=$TF_VAR_gitlab_user" \
+           -backend-config="password=$TF_VAR_gitlab_password" \
+           -backend-config="address=$TF_VAR_gitlab_url" \
+           -backend-config="lock_address=$TF_VAR_gitlab_lock" \
+           -backend-config="unlock_address=$TF_VAR_gitlab_unlock"
       run: terraform plan -input=false
       working-directory: labstart
 
     - name: Terraform Apply
       if: ${{ github.event.inputs.TFACTION == 'apply' }}
       run: terraform apply -auto-approve -input=false  \
-           -backend-config "username=$TF_VAR_gitlab_user" \
-           -backend-config "password=$TF_VAR_gitlab_password" \
-           -backend-config "address=$TF_VAR_gitlab_url" \
-           -backend-config "lock_address=$TF_VAR_gitlab_lock" \
-           -backend-config "unlock_address=$TF_VAR_gitlab_unlock"
+           -backend-config="username=$TF_VAR_gitlab_user" \
+           -backend-config="password=$TF_VAR_gitlab_password" \
+           -backend-config="address=$TF_VAR_gitlab_url" \
+           -backend-config="lock_address=$TF_VAR_gitlab_lock" \
+           -backend-config="unlock_address=$TF_VAR_gitlab_unlock"
       working-directory: labstart
     - name: Terraform destroy
       if: ${{ github.event.inputs.TFACTION == 'destroy' }}
