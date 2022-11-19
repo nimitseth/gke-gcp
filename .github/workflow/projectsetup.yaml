@@ -1,0 +1,57 @@
+name: 'Terraform'
+
+on:
+  workflow_dispatch:
+    inputs:
+      TFACTION:
+        default: "apply"
+        required: true
+        type: choice
+        options:
+         - "apply"
+         - "destroy"
+permissions:
+  contents: 'read'
+  id-token: 'write'
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: production
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.2.5
+    - name: testing env print
+      run: env
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init
+
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: terraform plan -input=false
+
+    - name: Terraform Apply
+      if: ${{ github.event.inputs.TFACTION == 'apply' }}
+      run: terraform apply -auto-approve -input=false
+    - name: Terraform destroy
+      if: ${{ github.event.inputs.TFACTION == 'destroy' }}
+      run: terraform destroy -auto-approve -input=false
