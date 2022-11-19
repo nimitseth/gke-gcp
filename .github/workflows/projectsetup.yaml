@@ -44,14 +44,18 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
+      working-directory: labstart
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan  -var="gitlab_token=${{ secrets.GITLAB_TOKEN }}" -var="gitlab_user=${{ secrets.GITLAB_USER }}" -var="gitlab_url=${{ secrets.GITLAB_URL }}"
       run: terraform plan -input=false
+      working-directory: labstart
 
     - name: Terraform Apply
       if: ${{ github.event.inputs.TFACTION == 'apply' }}
       run: terraform apply -auto-approve -input=false  -var="gitlab_token=${{ secrets.GITLAB_TOKEN }}" -var="gitlab_user=${{ secrets.GITLAB_USER }}" -var="gitlab_url=${{ secrets.GITLAB_URL }}"
+      working-directory: labstart
     - name: Terraform destroy
       if: ${{ github.event.inputs.TFACTION == 'destroy' }}
       run: terraform destroy -auto-approve -input=false
+      working-directory: labstart
