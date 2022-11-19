@@ -5,7 +5,8 @@ resource "random_id" "randhex" {
 
 // creating GKE  VPC
 resource "google_compute_network" "gke_vpc" {
-  project                 = google_project.my_project.project_id
+//  project                 = google_project.my_project.project_id
+  project                 = var.project_id
   name                    = "gke-vpc-${random_id.randhex.hex}"
   auto_create_subnetworks = false
   mtu                     = 1460

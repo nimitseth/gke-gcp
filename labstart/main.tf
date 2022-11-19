@@ -1,3 +1,4 @@
+/*
 resource "google_project" "my_project" {
   name       = "mevijay-lab"
   project_id = "mevijay-${random_id.randhex.hex}"
@@ -19,3 +20,5 @@ module "project-services" {
     "dns.googleapis.com",
   ]
 }
+
+*/
