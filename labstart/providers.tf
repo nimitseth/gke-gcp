@@ -21,6 +21,7 @@ locals {
     gitlab_user = var.gitlab_user
     gitlab_token = var.gitlab_token
 }
+}
 provider "random" {
 }
 
