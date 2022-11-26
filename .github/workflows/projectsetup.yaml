@@ -15,10 +15,12 @@ permissions:
   id-token: 'write'
 env:
   TF_HTTP_USERNAME: '${{ secrets.GITLAB_USER }}'
-  TF_HTTP_ADDRESS: '${{ secrets.GITLAB_URL }}/training-gcp'
+  TF_HTTP_ADDRESS: '${{ secrets.GITLAB_URL }}/gcp'
   TF_HTTP_PASSWORD: '${{ secrets.GITLAB_TOKEN }}'
   TF_HTTP_LOCK_ADDRESS: '${{ secrets.GITLAB_URL }}/lock'
   TF_HTTP_UNLOCK_ADDRESS: '${{ secrets.GITLAB_URL }}/lock'
+  TF_HTTP_LOCK_METHOD: "POST"
+  TF_HTTP_UNLOCK_METHOD: "DELETE"
 jobs:
   terraform:
     name: 'Terraform'
