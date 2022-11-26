@@ -17,8 +17,6 @@ env:
   TF_HTTP_USERNAME: '${{ secrets.GITLAB_USER }}'
   TF_HTTP_ADDRESS: '${{ secrets.GITLAB_URL }}/gcp'
   TF_HTTP_PASSWORD: '${{ secrets.GITLAB_TOKEN }}'
-#  TF_HTTP_LOCK_ADDRESS: '${{ secrets.GITLAB_URL }}/gcp/lock'
-#  TF_HTTP_UNLOCK_ADDRESS: '${{ secrets.GITLAB_URL }}/gcp/lock'
 jobs:
   terraform:
     name: 'Terraform'
@@ -44,15 +42,15 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.2.5
-    - name: testing env print
-      run: env
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - run: terraform init 
+      if: ${{ github.event.inputs.TFACTION == 'apply' }}
       name: Terraform init
       working-directory: labstart
 
     # Generates an execution plan for Terraform
     - run: terraform plan 
+      if: ${{ github.event.inputs.TFACTION == 'apply' }}
       name: terraform plan 
       working-directory: labstart
 
