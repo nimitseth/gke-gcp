@@ -54,7 +54,7 @@ jobs:
       working-directory: labstart
 
     # Generates an execution plan for Terraform
-    - run: terraform plan 
+    - run: terraform plan -lock=false
       name: terraform plan 
       working-directory: labstart
 
