@@ -47,21 +47,21 @@ jobs:
     - name: testing env print
       run: env
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - run: terraform init -backend-config="secrets.GITLAB_STATE"
+    - run: terraform init -backend-config='${{ secrets.GITLAB_STATE}}'
       name: Terraform init
       working-directory: labstart
 
     # Generates an execution plan for Terraform
-    - run: terraform plan -backend-config="secrets.GITLAB_STATE"
+    - run: terraform plan -backend-config='${{ secrets.GITLAB_STATE}}'
       name: terraform plan 
       working-directory: labstart
 
     - name: Terraform Apply
       if: ${{ github.event.inputs.TFACTION == 'apply' }}
-      run: terraform apply -auto-approve -input=false  -backend-config="secrets.GITLAB_STATE"
+      run: terraform apply -auto-approve -input=false  -backend-config='${{ secrets.GITLAB_STATE}}'
 
       working-directory: labstart
     - name: Terraform destroy
       if: ${{ github.event.inputs.TFACTION == 'destroy' }}
-      run: terraform destroy -auto-approve -input=false -backend-config="secrets.GITLAB_STATE"
+      run: terraform destroy -auto-approve -input=false -backend-config='${{ secrets.GITLAB_STATE}}'
       working-directory: labstart
