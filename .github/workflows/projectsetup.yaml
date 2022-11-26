@@ -44,13 +44,11 @@ jobs:
         terraform_version: 1.2.5
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - run: terraform init 
-      if: ${{ github.event.inputs.TFACTION == 'apply' }}
       name: Terraform init
       working-directory: labstart
 
     # Generates an execution plan for Terraform
     - run: terraform plan 
-      if: ${{ github.event.inputs.TFACTION == 'apply' }}
       name: terraform plan 
       working-directory: labstart
 
