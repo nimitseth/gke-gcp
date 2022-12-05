@@ -39,7 +39,7 @@ jobs:
         credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
     - name: prerequisite in runner
       run: |- 
-        apk add nodejs -q
+        apt install nodejs -q -y
     
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
