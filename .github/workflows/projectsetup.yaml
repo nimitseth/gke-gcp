@@ -20,7 +20,7 @@ env:
 jobs:
   terraform:
     name: 'Terraform'
-    runs-on: k8s-runner
+    runs-on: mylab-vm
     container:
       image: sharmavijay86/k8s-runner:v1
     environment: production
