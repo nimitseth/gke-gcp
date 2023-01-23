@@ -73,6 +73,3 @@
 
 
 [Gcloud SDK cheat sheet](/gcloud-sdk-cheat-sheet.html)
-testing a password
-
-password: pass12345
