@@ -7,7 +7,6 @@ resource "google_container_cluster" "primary" {
   name                     = "${var.cluster_name}-${random_id.randhex.hex}"
   location                 = var.region
   remove_default_node_pool = true
-  disk_size                = 60
   initial_node_count       = 1
   ip_allocation_policy {
     cluster_secondary_range_name  = google_compute_subnetwork.subnet.secondary_ip_range.0.range_name
