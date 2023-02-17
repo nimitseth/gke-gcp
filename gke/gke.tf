@@ -7,6 +7,7 @@ resource "google_container_cluster" "primary" {
   name                     = "${var.cluster_name}-${random_id.randhex.hex}"
   location                 = var.region
   remove_default_node_pool = true
+  disk_size                = 60
   initial_node_count       = 1
   ip_allocation_policy {
     cluster_secondary_range_name  = google_compute_subnetwork.subnet.secondary_ip_range.0.range_name
@@ -63,7 +64,7 @@ resource "google_container_node_pool" "primary_nodes" {
   location   = var.region
   cluster    = google_container_cluster.primary.name
   node_count = var.gke_num_nodes
-  max_pods_per_node = 30
+  max_pods_per_node = 100
   autoscaling {
     min_node_count = var.min_node
     max_node_count = var.max_node
@@ -71,6 +72,7 @@ resource "google_container_node_pool" "primary_nodes" {
   node_config {
     preemptible     = true
     machine_type    = var.node_size
+    disk_size_gb    = 60
     service_account = google_service_account.default.email
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
