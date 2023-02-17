@@ -45,7 +45,17 @@ resource "google_container_cluster" "primary" {
       enabled = true
     }
   }
-
+ node_config {
+    preemptible     = true
+    machine_type    = var.node_size
+    disk_size_gb    = "60"
+    disk_type       = "pd-standard"
+    service_account = google_service_account.default.email
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
+    tags = ["gke-node"]
+  }
   master_authorized_networks_config {
     dynamic "cidr_blocks" {
       for_each = var.authorized_ipv4_cidr_block
