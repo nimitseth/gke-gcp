@@ -1,6 +1,6 @@
 variable "region" {
   type    = string
-  default = "us-central1"
+  default = "us-central1-a"
 }
 variable "k8s_region" {
   type    = string
