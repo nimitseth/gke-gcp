@@ -72,7 +72,7 @@ resource "google_container_node_pool" "primary_nodes" {
     preemptible     = true
     machine_type    = var.node_size
     disk_size_gb    = 60GB
-    disk_type       = 'pd-standard'
+    disk_type       = pd-standard
     service_account = google_service_account.default.email
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
