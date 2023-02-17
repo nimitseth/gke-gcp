@@ -39,7 +39,7 @@ resource "google_compute_subnetwork" "subnet" {
 
 resource "google_dns_managed_zone" "private-zone" {
   name       = var.dns_zone_name
-  dns_name   = "${var.dns_zone_prefix}.vodafone.com."
+  dns_name   = "${var.dns_zone_prefix}.mevijay.dev."
   visibility = "private"
 
   private_visibility_config {
