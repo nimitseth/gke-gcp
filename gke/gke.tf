@@ -5,7 +5,7 @@ resource "google_service_account" "default" {
 }
 resource "google_container_cluster" "primary" {
   name                     = "${var.cluster_name}-${random_id.randhex.hex}"
-  location                 = var.region
+  location                 = var.k8s_region
   remove_default_node_pool = false
   initial_node_count       = 1
   ip_allocation_policy {
