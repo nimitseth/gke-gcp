@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-secret-api
+  namespace: default
+spec:
+  serviceAccountName: secret-ksa
+  containers:
+  - name: hello-secret-api
+    image: gcr.io/${PROJECT_ID}/hello-secret-api
+    ports:
+    - containerPort: 8080
+    env:
+    - name: PROJECT_ID
+      value: "${PROJECT_ID}"
+    - name: SECRET_NAME
+      value: "${SECRET_NAME}"
+    - name: SECRET_VERSION
+      value: "${SECRET_VERSION}"
