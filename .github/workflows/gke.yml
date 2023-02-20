@@ -20,7 +20,7 @@ env:
 jobs:
   terraform:
     name: 'GKE setup'
-    runs-on: mylab-vm
+    runs-on: ubuntu-latest
     container:
       image: sharmavijay86/k8s-runner:v1
     environment: production
@@ -38,8 +38,8 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: 'projects/284145783730/locations/global/workloadIdentityPools/githubgh/providers/github'
-        service_account: 'terraform-sa@mevijay-lab.iam.gserviceaccount.com'
+        workload_identity_provider: 'projects/158930933418/locations/global/workloadIdentityPools/githubgh/providers/github'
+        service_account: 'terraform-gcp@terraform-gcp-374215.iam.gserviceaccount.com'
     
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
