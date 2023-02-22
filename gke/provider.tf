@@ -1,14 +1,7 @@
 terraform {
   backend "gcs" {
-    bucket  = "tf-state-prod21"
+    bucket  = "tf-state-prod07"
     prefix  = "terraform/state"
-  }
-  
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "4.53.1"
-    }
   }
 }
 
