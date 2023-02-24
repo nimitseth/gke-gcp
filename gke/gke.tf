@@ -1,8 +1,4 @@
-// service account for gke
-resource "google_service_account" "default" {
-  account_id   = "github"
-  display_name = "github"
-}
+
 resource "google_container_cluster" "primary" {
   name                     = "${var.cluster_name}-${random_id.randhex.hex}"
   location                 = var.k8s_region
