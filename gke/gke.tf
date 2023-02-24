@@ -46,7 +46,6 @@ resource "google_container_cluster" "primary" {
     machine_type    = var.node_size
     disk_size_gb    = "60"
     disk_type       = "pd-standard"
-    service_account = google_service_account.default.email
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
