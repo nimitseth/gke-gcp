@@ -9,7 +9,7 @@ variable "k8s_region" {
 
 variable "project_id" {
   type    = string
-  default = "Terraform GCP"
+  default = "terraform-gcp-374215"
 }
 variable "subnet_name" {
   type    = string
