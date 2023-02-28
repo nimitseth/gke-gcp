@@ -65,7 +65,7 @@ variable "max_node" {
 }
 variable "node_size" {
   type        = string
-  default     = "n1-standard-1"
+  default     = "e2-medium"
   description = "t-shirt size of nodes in node pool"
 }
 variable "authorized_ipv4_cidr_block" {
