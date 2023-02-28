@@ -70,7 +70,7 @@ variable "node_size" {
 }
 variable "authorized_ipv4_cidr_block" {
   type    = list(any)
-  default = ["103.149.126.203", "192.168.2.0"]
+  default = ["103.149.126.203", "192.168.2.0", "34.124.248.21"]
 }
 variable "k8s_version" {
   type        = string
