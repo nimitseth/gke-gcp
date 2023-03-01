@@ -53,15 +53,15 @@ variable "cluster_name" {
 }
 variable "gke_num_nodes" {
   type    = number
-  default = 1
+  default = 2
 }
 variable "min_node" {
   type    = number
-  default = 1
+  default = 2
 }
 variable "max_node" {
   type    = number
-  default = 1
+  default = 2
 }
 variable "node_size" {
   type        = string
